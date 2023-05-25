@@ -30,8 +30,40 @@ function listarView(req, res){
     })
 }
 
+function editarView(req, res){
+    let id = req.params.id
+    let pessoa;
+    Pessoa.findByPk(id).then(function(pessoa){
+        res.render("pessoa/editar.html", {pessoa});
+    })
+}
+
+function editarPessoa(req, res) {
+    let pessoa = {
+        nome: req.body.nome,
+        sobrenome: req.body.sobrenome,
+        cpf: req.body.cpf,
+    }
+    Pessoa.update(
+      pessoa,
+      {
+        where: {
+          id: req.body.id,
+        },
+      }
+    ).then(function (sucesso) {
+        res.render("pessoa/editar.html", {pessoa, sucesso});
+    })
+    .catch(function (erro) {
+        res.render("pessoa/editar.html", {pessoa, erro})
+    });
+
+}
+
 module.exports =  {
     cadastrarView,
     cadastrarPessoa,
-    listarView
+    listarView,
+    editarView,
+    editarPessoa,
 };
