@@ -6,6 +6,7 @@ const app = express()
 
 app.engine('html', mustacheExpress())
 app.set('view engine', 'html')
+app.use(express.static('src'));
 app.set('views', __dirname + '/src/views')
 
 app.use(express.urlencoded({extended: true}))

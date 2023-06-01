@@ -60,10 +60,21 @@ function editarPessoa(req, res) {
 
 }
 
+function deletarPessoa(req, res) {
+    let id = req.params.id;
+
+    Pessoa.destroy({
+        where: {id: id}
+    })
+
+    //Pessoa.destroy(id)
+}
+
 module.exports =  {
     cadastrarView,
     cadastrarPessoa,
     listarView,
     editarView,
     editarPessoa,
+    deletarPessoa
 };
