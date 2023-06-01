@@ -5,10 +5,16 @@ function cadastrarView(req, res){
 }
 
 function cadastrarPessoa(req, res){
-    let pessoa = {
-        nome: req.body.nome,
-        sobrenome: req.body.sobrenome,
-        cpf: req.body.cpf
+    const { nome, sobrenome, cpf, email, telefone, altura, peso} = req.body;
+
+    const pessoa = {
+        nome: nome,
+        sobrenome: sobrenome,
+        cpf: cpf,
+        email: email,
+        telefone: telefone,
+        altura: altura,
+        peso: peso
     }
     
     Pessoa.create(pessoa).then((result)=>{
@@ -32,18 +38,24 @@ function listarView(req, res){
 
 function editarView(req, res){
     let id = req.params.id
-    let pessoa;
     Pessoa.findByPk(id).then(function(pessoa){
         res.render("pessoa/editar.html", {pessoa});
     })
 }
 
 function editarPessoa(req, res) {
-    let pessoa = {
-        nome: req.body.nome,
-        sobrenome: req.body.sobrenome,
-        cpf: req.body.cpf,
+    const { nome, sobrenome, cpf, email, telefone, altura, peso} = req.body;
+
+    const pessoa = {
+        nome: nome,
+        sobrenome: sobrenome,
+        cpf: cpf,
+        email: email,
+        telefone: telefone,
+        altura: altura,
+        peso: peso
     }
+    
     Pessoa.update(
       pessoa,
       {

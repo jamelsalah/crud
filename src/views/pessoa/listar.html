@@ -11,7 +11,7 @@
         function redirect() { window.location.href = "/pessoa/cadastrar"}
         function deletar(id) {
             console.log(id)
-            if (confirm("Tem certeza que deseja deletar?")) {
+            if (confirm(`Tem certeza que deseja deletar a pessoa de id ${id}?`)) {
                 fetch(`/pessoa/deletar/${id}`)
                     .then(response => {
                     // Manipule a resposta aqui
